@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo Frontend</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <ul id="todos"></ul>
+    <script>
+        fetch('/api/todos')
+            .then(response => response.json())
+            .then(todos => {
+                const ul = document.getElementById('todos');
+                todos.forEach(todo => {
+                    let li = document.createElement('li');
+                    li.textContent = todo.text + (todo.done ? " ✔️" : "");
+                    ul.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
