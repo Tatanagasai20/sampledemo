@@ -2,29 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Todo Frontend</title>
+    <title>Todo List</title>
 </head>
 <body>
     <h1>Todo List</h1>
     <ul id="todos"></ul>
     <script>
-        // Fetch backend URL from server
-        fetch('/backend-url')
-          .then(res => res.json())
-          .then(({ backendUrl }) => {
-            // Use backend URL to fetch todos
-            return fetch(`${backendUrl}/api/todos`);
-          })
-          .then(res => res.json())
+        // Update with your backend IP and port
+        fetch('http://35.154.1.174:8080/api/todos')
+          .then(response => response.json())
           .then(todos => {
-              const ul = document.getElementById('todos');
-              todos.forEach(todo => {
-                  let li = document.createElement('li');
-                  li.textContent = todo.text + (todo.done ? " ✔️" : "");
-                  ul.appendChild(li);
-              });
+            const ul = document.getElementById('todos');
+            todos.forEach(todo => {
+                let li = document.createElement('li');
+                li.textContent = todo.text + (todo.done ? " ✔️" : "");
+                ul.appendChild(li);
+            });
           })
           .catch(err => console.error('Error fetching todos:', err));
     </script>
 </body>
 </html>
+
