@@ -8,8 +8,8 @@
     <h1>Todo List</h1>
     <ul id="todos"></ul>
     <script>
-        // Update with your backend IP and port
-        fetch('http://35.154.1.174:8080/api/todos')
+        // Use relative path so Nginx can route to backend
+        fetch('/api/todos')
           .then(response => response.json())
           .then(todos => {
             const ul = document.getElementById('todos');
